@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 //cadena de conexion a la base de datos
 //     mongodb+srv://jgomez:*****@cluster0.jlxw4.mongodb.net/hospitaldb
 
-const dbConection = async() => {
+const dbConnection = async() => {
 
     try {
         await mongoose.connect(process.env.DB_CNN, {
@@ -29,5 +29,5 @@ const dbConection = async() => {
 
 //exporto la funcion para conexion a mi db
 module.exports = {
-    dbConection
+    dbConnection
 }
