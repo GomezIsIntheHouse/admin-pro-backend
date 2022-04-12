@@ -9,17 +9,52 @@ const { generarJWT } = require("../helpers/jwt");
 
 
 const getUsuarios = async(req, res) => {
+    /*   
+     *********************PAGINACION DE RESPUESTA DEL BACKEND
+     */
+    //recibir argumento por parametro o en su defecto el nro 0
+
+    const desde = Number(req.query.desde) || 0;
 
 
-    const usuarios = await Usuario.find({}, 'nombre email role google ');
 
 
-    res.json({
+    //skip: salta todos los registros qe estan antes del nro indicado por DESDE
+
+
+    // const usuarios = await Usuario
+    //     .find({}, 'nombre email role google ')
+    //     .skip(desde)
+    //     .limit(hasta)
+
+    //total de registros de usuarios
+    //const total = await Usuario.count();
+
+
+    //Una manera de mejorar la respuesta de las dos funciones anteriores, es de la manera:
+    //Englobariamos ambas funciones de AWAIT, para poder optimizar la eficiencia de  nuestro codigo.
+
+    //Nuestro Promise.all devuelve un arreglo de respuestas de nuestras proimesas. Siempre al final se separa con una coma.
+
+    const [usuarios, total] = await Promise.all([
+        Usuario
+        .find({}, 'nombre email role google ')
+        .skip(desde)
+        .limit(5),
+
+        Usuario.count()
+
+    ]);
+
+    return res.json({
         ok: true,
         usuarios,
-        uid: req.uid //id del usuario que hizo la peticion del GET USUARIOS
+        uid: req.uid, //id del usuario que hizo la peticion del GET USUARIOS
+        total
     });
-
+    /*   
+     *********************FIN PAGINACION DE RESPUESTA DEL BACKEND
+     */
 
 }
 
