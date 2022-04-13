@@ -1,6 +1,6 @@
 // Path: './api/login'
 const { Router } = require('express');
-const { login } = require('../controllers/auth');
+const { login, googleSingIn } = require('../controllers/auth');
 //Para validar mediante middlewares
 const { body } = require('express-validator')
 const { validarCampos } = require('../middlewares/validar-campos')
@@ -13,6 +13,14 @@ router.post('/', [
         validarCampos
     ],
     login
+
+);
+router.post('/google', [
+
+        body('token', 'El token es obligatorio').not().isEmpty(),
+        validarCampos
+    ],
+    googleSingIn
 
 )
 

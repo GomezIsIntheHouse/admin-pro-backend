@@ -17,6 +17,10 @@ app.use(express.json());
 // Base de datos
 dbConnection();
 
+//Directorio público
+app.use(express.static('public')); // con esta linea, le indicamos al back que unicamente sera publico el contenido de 
+//declarado en esta linea. En este caso, sera la carpeta public.vvvvvvvvvvvvvvvfccvvvvvvvvv
+
 
 // Rutas
 app.use('/api/usuarios', require('./routes/usuarios'));
