@@ -33,9 +33,9 @@ router.post('/', [
 
     crearHospital);
 
-router.put('/:id', [], actualizarHospital);
+router.put('/:id', [body('nombre', 'nombre del Hospital Es Necesario').not().isEmpty(), ], actualizarHospital);
 
-router.delete('/:id', borrarHospital);
+router.delete('/:id', validarJWT, borrarHospital);
 
 
 
