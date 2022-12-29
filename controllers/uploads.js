@@ -90,12 +90,12 @@ const retornaImagen = async(req, res) => {
     const tipo = req.params.tipo;
     const foto = req.params.foto;
 
-    const pathImg = pathh.join(__dirname, `../uploads/${tipo}/${foto}`)
+    const pathImg = pathh.join(__dirname, `../upload/${tipo}/${foto}`)
     if (fs.pathExistsSync(pathImg)) {
         res.sendFile(pathImg);
 
     } else {
-        const pathImg = pathh.join(__dirname, `../uploads/no-image.jpg`)
+        const pathImg = pathh.join(__dirname, `../upload/no-image.jpg`)
         res.sendFile(pathImg);
     }
 }

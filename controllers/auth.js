@@ -7,6 +7,7 @@ const { generarJWT } = require("../helpers/jwt");
 
 const { googleVerify } = require('../helpers/google-verify');
 const { async } = require("jshint/src/prod-params");
+const usuario = require("../models/usuario");
 
 const login = async(req, res) => {
 
@@ -112,10 +113,14 @@ const renewToken = async(req, res = response) => {
     // Generar el TOKEN - JWT
     const token = await generarJWT(uid);
 
+    //obtener usuario x UID
+
+    const usuario = await Usuario.findById( uid );
 
     res.json({
         ok: true,
-        token
+        token,
+        usuario,
     })
 
 }

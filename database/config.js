@@ -3,10 +3,12 @@
 const mongoose = require('mongoose');
 
 //usuario:  jgomez
-//passw:  *k3nU*._6cB4XsW
+//passw:  4oIjULFkAcrdHci9
 
 //cadena de conexion a la base de datos
-//     mongodb+srv://jgomez:*****@cluster0.jlxw4.mongodb.net/hospitaldb
+//     mongodb+srv://jgomez:4oIjULFkAcrdHci9@cluster0.jlxw4.mongodb.net/hospitaldb
+
+
 
 const dbConnection = async() => {
 
